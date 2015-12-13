@@ -9,7 +9,17 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    
+    
+    
+    @IBOutlet weak var P1Field: UITextField!
+    
+    @IBOutlet weak var P2Field: UITextField!
+    
+    @IBOutlet weak var P3Field: UITextField!
 
+    @IBOutlet weak var MsgLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +31,27 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func saveData(sender: AnyObject) {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if P1Field.text.isEmpty == false
+        {
+            defaults.setObject(P1Field.text, forKey: "P1Perc")
+        }
+        if P2Field.text.isEmpty == false
+        {
+            defaults.setObject(P2Field.text, forKey: "P2Perc")
+        }
+        if P3Field.text.isEmpty == false
+        {
+            defaults.setObject(P3Field.text, forKey: "P3Perc")
+        }
+        defaults.synchronize()
+        MsgLabel.text = "Saved Data Successfully"
+        
+        UILabel.animateWithDuration(4.4, animations: {self.MsgLabel.alpha = 0})
+        
+    }
 
     /*
     // MARK: - Navigation
